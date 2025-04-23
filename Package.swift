@@ -30,6 +30,9 @@ let package = Package(
                 .linkedFramework("Accelerate", .when(platforms: [.iOS, .macOS, .visionOS])),
                 .linkedFramework("OpenCL", .when(platforms: [.macOS])),
                 .linkedLibrary("c++")
+            ],
+            swiftSettings: [
+                .unsafeFlags(["-suppress-warnings"])
             ]
         )
     ]
