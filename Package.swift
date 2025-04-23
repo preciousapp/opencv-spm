@@ -1,6 +1,4 @@
 // swift-tools-version: 5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let version = "4.11.0"
@@ -14,14 +12,19 @@ let package = Package(
     products: [
         .library(
             name: "OpenCV",
-            targets: ["opencv2", "opencv2-dependencies"]),
+            targets: ["opencv2", "opencv2-dependencies"]
+        ),
     ],
     targets: [
-        .binaryTarget(name: "opencv2",
-                      url: "https://github.com/yeatse/opencv-spm/releases/download/\(version)/opencv2.xcframework.zip",
-                      checksum: checksum),
+        .binaryTarget(
+            name: "opencv2",
+            url: "https://github.com/yeatse/opencv-spm/releases/download/\(version)/opencv2.xcframework.zip",
+            checksum: checksum
+        ),
         .target(
             name: "opencv2-dependencies",
+            dependencies: ["opencv2"],
+            sources: [], // Important to declare it's a wrapper with no sources
             linkerSettings: [
                 .linkedFramework("AVFoundation"),
                 .linkedFramework("CoreImage"),
